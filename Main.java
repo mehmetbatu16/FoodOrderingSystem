@@ -74,6 +74,29 @@ class CashPayment implements PaymentMethod {
         System.out.println("Payment type: Cash at Door. Amount to collect: $" + amount);
     }
 }
+class Customer extends User {
+    private List<MenuItem> cart;
+    private boolean hasCoupon;
+
+    public Customer(String name, String phone, String address) {
+        super(name, phone, address);
+        this.cart = new ArrayList<>();
+        this.hasCoupon = false;
+    }
+
+    public void addToCart(MenuItem item) {
+        cart.add(item);
+        System.out.println(item.getName() + " added to cart.");
+    }
+
+    public List<MenuItem> getCart() {
+        return cart;
+    }
+
+    public void clearCart() {
+        cart.clear();
+    }
+}
 }
 public class Main {
     public static void main(String[] args) {
