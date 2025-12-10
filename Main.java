@@ -56,6 +56,10 @@ class MenuItem {
     public double getPrice() {
         return price;
     }
+@Override
+    public String toString() {
+        return String.format("%-3d %-20s ($%.2f) [%s]", id, name, price, category);
+    }
 }
 public class Main {
     public static void main(String[] args) {
