@@ -60,6 +60,20 @@ class MenuItem {
     public String toString() {
         return String.format("%-3d %-20s ($%.2f) [%s]", id, name, price, category);
     }
+class CreditCardPayment implements PaymentMethod {
+    @Override
+    public void pay(double amount) {
+        System.out.println("Processing Credit Card payment...");
+        System.out.println("Payment of $" + amount + " successful.");
+    }
+}
+
+class CashPayment implements PaymentMethod {
+    @Override
+    public void pay(double amount) {
+        System.out.println("Payment type: Cash at Door. Amount to collect: $" + amount);
+    }
+}
 }
 public class Main {
     public static void main(String[] args) {
