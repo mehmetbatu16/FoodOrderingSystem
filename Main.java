@@ -226,8 +226,17 @@ public class Main {
 
             switch (choice) {
                 case 1:
+                    restaurant.displayMenu();
                     break;
                 case 2:
+                    System.out.print("Enter Item ID: ");
+                    int id = scanner.nextInt();
+                    MenuItem item = restaurant.getItemById(id);
+                    if (item != null) {
+                        customer.addToCart(item);
+                    } else {
+                        System.out.println("Item not found.");
+                    }
                     break;
                 case 3:
                     break;
