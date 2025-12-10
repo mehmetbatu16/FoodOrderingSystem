@@ -161,15 +161,19 @@ class Order implements Orderable {
         this.paymentMethod = paymentMethod;
         this.totalAmount = calculateTotal();
     }
-
     @Override
     public double calculateTotal() {
-        return 0.0; // Gelecek adimda dolduracagiz
+        double total = 0;
+        for (MenuItem item : items) {
+            total += item.getPrice();
+        }
+        if (customer.hasCoupon()) {
+            total = total * 0.90;
+        }
+        return total;
     }
-
     @Override
     public void placeOrder() {
-        // Gelecek adimda dolduracagiz
     }
 }
 
