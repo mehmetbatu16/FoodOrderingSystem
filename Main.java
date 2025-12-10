@@ -244,6 +244,21 @@ public class Main {
                     customer.applyCoupon(code);
                     break;
                 case 4:
+                    if (customer.getCart().isEmpty()) {
+                        System.out.println("Cart is empty.");
+                    } else {
+                        System.out.println("Payment: [1] Credit Card [2] Cash");
+                        int pType = scanner.nextInt();
+                        PaymentMethod method;
+                        if (pType == 1) {
+                            method = new CreditCardPayment();
+                        } else {
+                            method = new CashPayment();
+                        }
+
+                        Order order = new Order(customer, method);
+                        order.placeOrder();
+                    }
                     break;
                 case 5:
                     running = false;
