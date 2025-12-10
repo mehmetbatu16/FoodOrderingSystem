@@ -128,6 +128,9 @@ class Restaurant {
         menu.add(new MenuItem(1, "Cheeseburger", 12.50, "Food"));
         menu.add(new MenuItem(2, "Pepperoni Pizza", 15.00, "Food"));
         menu.add(new MenuItem(3, "Caesar Salad", 9.00, "Food"));
+        menu.add(new MenuItem(4, "Coke", 2.50, "Drink"));
+        menu.add(new MenuItem(5, "Iced Coffee", 4.00, "Drink"));
+        menu.add(new MenuItem(6, "Chocolate Cake", 6.50, "Dessert"));
     }
 
     public void displayMenu() {
