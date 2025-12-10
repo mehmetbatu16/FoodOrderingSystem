@@ -96,6 +96,18 @@ class Customer extends User {
     public void clearCart() {
         cart.clear();
     }
+    public void applyCoupon(String code) {
+        if (code.equalsIgnoreCase("STUDENT10")) {
+            hasCoupon = true;
+            System.out.println("Coupon Applied! 10% Discount active.");
+        } else {
+            System.out.println("Invalid Coupon Code.");
+        }
+    }
+
+    public boolean hasCoupon() {
+        return hasCoupon;
+    }
 }
 }
 public class Main {
