@@ -32,6 +32,31 @@ class User {
         return address;
     }
 }
+class MenuItem {
+    private int id;
+    private String name;
+    private double price;
+    private String category;
+
+    public MenuItem(int id, String name, double price, String category) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.category = category;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+}
 public class Main {
     public static void main(String[] args) {
         System.out.println("System starting...");
