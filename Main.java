@@ -262,7 +262,7 @@ public class Main {
                     break;
                 case 5:
                     running = false;
-                    System.out.println("Goodbye!");
+                    System.out.println("Thank you for choosing Java Burger House! Goodbye!");
                     break;
                 default:
                     System.out.println("Invalid option.");
