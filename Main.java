@@ -200,6 +200,47 @@ class Order implements Orderable {
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("System starting...");
+        Scanner scanner = new Scanner(System.in);
+        Restaurant restaurant = new Restaurant("Java Burger House", 4.8);
+
+        System.out.println("### FOOD ORDERING SYSTEM ###");
+        System.out.print("Enter Name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter Phone: ");
+        String phone = scanner.nextLine();
+        System.out.print("Enter Address: ");
+        String address = scanner.nextLine();
+
+        Customer customer = new Customer(name, phone, address);
+
+        boolean running = true;
+        while (running) {
+            System.out.println("\n[1] View Menu");
+            System.out.println("[2] Add to Cart");
+            System.out.println("[3] Apply Coupon Code");
+            System.out.println("[4] Place Order");
+            System.out.println("[5] Exit");
+            System.out.print("Select: ");
+
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    running = false;
+                    System.out.println("Goodbye!");
+                    break;
+                default:
+                    System.out.println("Invalid option.");
+            }
+        }
+        scanner.close();
     }
 }
