@@ -5,7 +5,6 @@ interface Orderable {
     void placeOrder();
     double calculateTotal();
 }
-
 interface PaymentMethod {
     void pay(double amount);
 }
@@ -13,21 +12,17 @@ class User {
     private String name;
     private String phone;
     private String address;
-
     public User(String name, String phone, String address) {
         this.name = name;
         this.phone = phone;
         this.address = address;
     }
-
     public String getName() {
         return name;
     }
-
     public String getPhone() {
         return phone;
     }
-
     public String getAddress() {
         return address;
     }
@@ -37,22 +32,18 @@ class MenuItem {
     private String name;
     private double price;
     private String category;
-
     public MenuItem(int id, String name, double price, String category) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.category = category;
     }
-
     public int getId() {
         return id;
     }
-
     public String getName() {
         return name;
     }
-
     public double getPrice() {
         return price;
     }
@@ -68,7 +59,6 @@ class CreditCardPayment implements PaymentMethod {
         System.out.println("Payment of $" + amount + " successful.");
     }
 }
-
 class CashPayment implements PaymentMethod {
     @Override
     public void pay(double amount) {
@@ -78,26 +68,21 @@ class CashPayment implements PaymentMethod {
 class Customer extends User {
     private List<MenuItem> cart;
     private boolean hasCoupon;
-
     public Customer(String name, String phone, String address) {
         super(name, phone, address);
         this.cart = new ArrayList<>();
         this.hasCoupon = false;
     }
-
     public void addToCart(MenuItem item) {
         cart.add(item);
         System.out.println(item.getName() + " added to cart.");
     }
-
     public List<MenuItem> getCart() {
         return cart;
     }
-
     public void clearCart() {
         cart.clear();
     }
-
     public void applyCoupon(String code) {
         if (code.equalsIgnoreCase("STUDENT10")) {
             hasCoupon = true;
@@ -106,12 +91,10 @@ class Customer extends User {
             System.out.println("Invalid Coupon Code.");
         }
     }
-
     public boolean hasCoupon() {
         return hasCoupon;
     }
 }
-
 class Restaurant {
     private String name;
     private double rating;
@@ -123,7 +106,6 @@ class Restaurant {
         this.menu = new ArrayList<>();
         initMenu();
     }
-
     private void initMenu() {
         menu.add(new MenuItem(1, "Cheeseburger", 12.50, "Food"));
         menu.add(new MenuItem(2, "Pepperoni Pizza", 15.00, "Food"));
@@ -132,14 +114,12 @@ class Restaurant {
         menu.add(new MenuItem(5, "Iced Coffee", 4.00, "Drink"));
         menu.add(new MenuItem(6, "Chocolate Cake", 6.50, "Dessert"));
     }
-
     public void displayMenu() {
         System.out.println("\n--- " + name + " Menu (Rating: " + rating + "/5.0) ---");
         for (MenuItem item : menu) {
             System.out.println(item);
         }
     }
-
     public MenuItem getItemById(int id) {
         for (MenuItem item : menu) {
             if (item.getId() == id) {
@@ -154,7 +134,6 @@ class Order implements Orderable {
     private List<MenuItem> items;
     private PaymentMethod paymentMethod;
     private double totalAmount;
-
     public Order(Customer customer, PaymentMethod paymentMethod) {
         this.customer = customer;
         this.items = new ArrayList<>(customer.getCart());
@@ -179,30 +158,23 @@ class Order implements Orderable {
         System.out.println("Phone   : " + customer.getPhone());
         System.out.println("Address : " + customer.getAddress());
         System.out.println("-----------------------------------------");
-
         for (MenuItem item : items) {
             System.out.println("- " + item.getName() + " : $" + item.getPrice());
         }
-
         if (customer.hasCoupon()) {
             System.out.println(">> Discount Applied (10%)");
         }
-
         System.out.println("-----------------------------------------");
         System.out.printf("TOTAL AMOUNT: $%.2f\n", totalAmount);
-
         paymentMethod.pay(totalAmount);
-
         System.out.println("=========================================");
         customer.clearCart();
     }
 }
-
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Restaurant restaurant = new Restaurant("Java Burger House", 4.8);
-
         System.out.println("### FOOD ORDERING SYSTEM ###");
         System.out.print("Enter Name: ");
         String name = scanner.nextLine();
@@ -210,9 +182,7 @@ public class Main {
         String phone = scanner.nextLine();
         System.out.print("Enter Address: ");
         String address = scanner.nextLine();
-
         Customer customer = new Customer(name, phone, address);
-
         boolean running = true;
         while (running) {
             System.out.println("\n[1] View Menu");
@@ -221,9 +191,7 @@ public class Main {
             System.out.println("[4] Place Order");
             System.out.println("[5] Exit");
             System.out.print("Select: ");
-
             int choice = scanner.nextInt();
-
             switch (choice) {
                 case 1:
                     restaurant.displayMenu();
@@ -255,7 +223,6 @@ public class Main {
                         } else {
                             method = new CashPayment();
                         }
-
                         Order order = new Order(customer, method);
                         order.placeOrder();
                     }
