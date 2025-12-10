@@ -149,6 +149,29 @@ class Restaurant {
         return null;
     }
 }
+class Order implements Orderable {
+    private Customer customer;
+    private List<MenuItem> items;
+    private PaymentMethod paymentMethod;
+    private double totalAmount;
+
+    public Order(Customer customer, PaymentMethod paymentMethod) {
+        this.customer = customer;
+        this.items = new ArrayList<>(customer.getCart());
+        this.paymentMethod = paymentMethod;
+        this.totalAmount = calculateTotal();
+    }
+
+    @Override
+    public double calculateTotal() {
+        return 0.0; // Gelecek adimda dolduracagiz
+    }
+
+    @Override
+    public void placeOrder() {
+        // Gelecek adimda dolduracagiz
+    }
+}
 
 public class Main {
     public static void main(String[] args) {
