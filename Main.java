@@ -60,6 +60,7 @@ class MenuItem {
     public String toString() {
         return String.format("%-3d %-20s ($%.2f) [%s]", id, name, price, category);
     }
+}
 class CreditCardPayment implements PaymentMethod {
     @Override
     public void pay(double amount) {
@@ -96,6 +97,40 @@ class Customer extends User {
     public void clearCart() {
         cart.clear();
     }
+    class Restaurant {
+    private String name;
+    private double rating;
+    private List<MenuItem> menu;
+
+    public Restaurant(String name, double rating) {
+        this.name = name;
+        this.rating = rating;
+        this.menu = new ArrayList<>();
+        initMenu();
+    }
+
+    private void initMenu() {
+        menu.add(new MenuItem(1, "Cheeseburger", 12.50, "Food"));
+        menu.add(new MenuItem(2, "Pepperoni Pizza", 15.00, "Food"));
+        menu.add(new MenuItem(3, "Caesar Salad", 9.00, "Food"));
+    }
+
+    public void displayMenu() {
+        System.out.println("\n--- " + name + " Menu (Rating: " + rating + "/5.0) ---");
+        for (MenuItem item : menu) {
+            System.out.println(item);
+        }
+    }
+
+    public MenuItem getItemById(int id) {
+        for (MenuItem item : menu) {
+            if (item.getId() == id) {
+                return item;
+            }
+        }
+        return null;
+    }
+}
     public void applyCoupon(String code) {
         if (code.equalsIgnoreCase("STUDENT10")) {
             hasCoupon = true;
@@ -109,7 +144,7 @@ class Customer extends User {
         return hasCoupon;
     }
 }
-}
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("System starting...");
