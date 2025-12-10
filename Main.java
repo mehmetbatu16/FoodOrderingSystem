@@ -239,6 +239,9 @@ public class Main {
                     }
                     break;
                 case 3:
+                    System.out.print("Enter Code (Try 'STUDENT10'): ");
+                    String code = scanner.next();
+                    customer.applyCoupon(code);
                     break;
                 case 4:
                     break;
