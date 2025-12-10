@@ -97,7 +97,22 @@ class Customer extends User {
     public void clearCart() {
         cart.clear();
     }
-    class Restaurant {
+
+    public void applyCoupon(String code) {
+        if (code.equalsIgnoreCase("STUDENT10")) {
+            hasCoupon = true;
+            System.out.println("Coupon Applied! 10% Discount active.");
+        } else {
+            System.out.println("Invalid Coupon Code.");
+        }
+    }
+
+    public boolean hasCoupon() {
+        return hasCoupon;
+    }
+}
+
+class Restaurant {
     private String name;
     private double rating;
     private List<MenuItem> menu;
@@ -129,19 +144,6 @@ class Customer extends User {
             }
         }
         return null;
-    }
-}
-    public void applyCoupon(String code) {
-        if (code.equalsIgnoreCase("STUDENT10")) {
-            hasCoupon = true;
-            System.out.println("Coupon Applied! 10% Discount active.");
-        } else {
-            System.out.println("Invalid Coupon Code.");
-        }
-    }
-
-    public boolean hasCoupon() {
-        return hasCoupon;
     }
 }
 
