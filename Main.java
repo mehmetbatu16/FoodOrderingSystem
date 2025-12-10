@@ -174,6 +174,27 @@ class Order implements Orderable {
     }
     @Override
     public void placeOrder() {
+        System.out.println("\n============= ORDER SUMMARY =============");
+        System.out.println("Customer: " + customer.getName());
+        System.out.println("Phone   : " + customer.getPhone());
+        System.out.println("Address : " + customer.getAddress());
+        System.out.println("-----------------------------------------");
+
+        for (MenuItem item : items) {
+            System.out.println("- " + item.getName() + " : $" + item.getPrice());
+        }
+
+        if (customer.hasCoupon()) {
+            System.out.println(">> Discount Applied (10%)");
+        }
+
+        System.out.println("-----------------------------------------");
+        System.out.printf("TOTAL AMOUNT: $%.2f\n", totalAmount);
+
+        paymentMethod.pay(totalAmount);
+
+        System.out.println("=========================================");
+        customer.clearCart();
     }
 }
 
