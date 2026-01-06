@@ -50,19 +50,25 @@ public class Main {
                     } else {
                         System.out.println("Payment: [1] Credit Card [2] Cash");
                         int pType = scanner.nextInt();
-                        PaymentMethod method;
-                        if (pType == 1) {
-                            method = new CreditCardPayment();
-                        } else {
-                            method = new CashPayment();
-                        }
-                        
-                        Order order = new Order(customer, method);
-                        order.placeOrder();
+                        PaymentMethod method = (pType == 1) ? new CreditCardPayment() : new CashPayment();
+                        new Order(customer, method).placeOrder();
 
-                        System.out.print("\nDid you like your meal? Rate the restaurant (1-5): ");
-                        int userRating = scanner.nextInt();
-                        restaurant.addRating(userRating);
+                        boolean ratingDone = false;
+                        while (!ratingDone) {
+                            try {
+                                System.out.print("\nDid you like your meal? Rate the restaurant (1-5): ");
+                                int userRating = scanner.nextInt();
+                                if (userRating >= 1 && userRating <= 5) {
+                                    restaurant.addRating(userRating);
+                                    ratingDone = true;
+                                } else {
+                                    System.out.println("Please enter a number between 1 and 5.");
+                                }
+                            } catch (java.util.InputMismatchException e) {
+                                System.out.println("Invalid input! Please enter a number, not a letter.");
+                                scanner.next();
+                            }
+                        }
                     }
                     break;
                 case 5:
