@@ -50,7 +50,13 @@ public class Main {
                     } else {
                         System.out.println("Payment: [1] Credit Card [2] Cash");
                         int pType = scanner.nextInt();
-                        PaymentMethod method = (pType == 1) ? new CreditCardPayment() : new CashPayment();
+                        PaymentMethod method;
+                        if (pType == 1) {
+                            method = new CreditCardPayment();
+                        } else {
+                            method = new CashPayment();
+                        }
+                        
                         Order order = new Order(customer, method);
                         order.placeOrder();
 
