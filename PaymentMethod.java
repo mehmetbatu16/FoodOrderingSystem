@@ -1,3 +1,3 @@
-public interface PaymentMethod {
+interface PaymentMethod {
     void pay(double amount);
 }

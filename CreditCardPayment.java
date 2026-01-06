@@ -1,4 +1,4 @@
-public class CreditCardPayment implements PaymentMethod {
+class CreditCardPayment implements PaymentMethod {
     @Override
     public void pay(double amount) {
         System.out.println("Processing Credit Card payment...");

@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Restaurant {
+class Restaurant {
     private String name;
     private double rating;
     private List<MenuItem> menu;
@@ -23,7 +23,7 @@ public class Restaurant {
     }
 
     public void displayMenu() {
-        System.out.println("\n--- " + name + " Menu (Rating: " + rating + "/5.0) ---");
+        System.out.println("\n--- " + name + " Menu (Rating: " + String.format("%.1f", rating) + "/5.0) ---");
         for (MenuItem item : menu) {
             System.out.println(item);
         }
@@ -31,8 +31,19 @@ public class Restaurant {
 
     public MenuItem getItemById(int id) {
         for (MenuItem item : menu) {
-            if (item.getId() == id) return item;
+            if (item.getId() == id) {
+                return item;
+            }
         }
         return null;
+    }
+
+    public void addRating(int customerRating) {
+        if (customerRating >= 1 && customerRating <= 5) {
+            this.rating = (this.rating + customerRating) / 2.0;
+            System.out.println("Thank you for your feedback! New Restaurant Rating: " + String.format("%.1f", this.rating));
+        } else {
+            System.out.println("Invalid rating. Please enter a value between 1 and 5.");
+        }
     }
 }
