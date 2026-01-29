@@ -5,30 +5,24 @@ class Restaurant {
     private String name;
     private double rating;
     private List<MenuItem> menu;
-
     public Restaurant(String name, double rating) {
         this.name = name;
         this.rating = rating;
         this.menu = new ArrayList<>();
-        initMenu();
     }
-
-    private void initMenu() {
-        menu.add(new MenuItem(1, "Cheeseburger", 12.50, "Food"));
-        menu.add(new MenuItem(2, "Pepperoni Pizza", 15.00, "Food"));
-        menu.add(new MenuItem(3, "Caesar Salad", 9.00, "Food"));
-        menu.add(new MenuItem(4, "Coke", 2.50, "Drink"));
-        menu.add(new MenuItem(5, "Iced Coffee", 4.00, "Drink"));
-        menu.add(new MenuItem(6, "Chocolate Cake", 6.50, "Dessert"));
+    public void addMenuItem(MenuItem item) {
+        menu.add(item);
     }
-
     public void displayMenu() {
         System.out.println("\n--- " + name + " Menu (Rating: " + rating + "/5.0) ---");
-        for (MenuItem item : menu) {
-            System.out.println(item);
+        if (menu.isEmpty()) {
+            System.out.println("No items available in the menu.");
+        } else {
+            for (MenuItem item : menu) {
+                System.out.println(item);
+            }
         }
     }
-
     public MenuItem getItemById(int id) {
         for (MenuItem item : menu) {
             if (item.getId() == id) {
@@ -37,7 +31,6 @@ class Restaurant {
         }
         return null;
     }
-
     public void addRating(int customerRating) {
         if (customerRating >= 1 && customerRating <= 5) {
             this.rating = (this.rating + customerRating) / 2.0;

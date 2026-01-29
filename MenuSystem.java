@@ -1,10 +1,11 @@
 import java.util.Scanner;
+import java.io.*;
 
 public class MenuSystem {
     public void start() {
         Scanner scanner = new Scanner(System.in);
         Restaurant restaurant = new Restaurant("Java Burger House", 4.8);
-        
+        loadMenu(restaurant, "menu.csv");       
         System.out.println("### FOOD ORDERING SYSTEM ###");
         System.out.print("Enter Name: ");
         String name = scanner.nextLine();
@@ -12,10 +13,8 @@ public class MenuSystem {
         String phone = scanner.nextLine();
         System.out.print("Enter Address: ");
         String address = scanner.nextLine();
-        
         Customer customer = new Customer(name, phone, address);
         boolean running = true;
-
         while (running) {
             System.out.println("\n[1] View Menu");
             System.out.println("[2] Add to Cart");
@@ -24,7 +23,6 @@ public class MenuSystem {
             System.out.println("[5] Exit");
             System.out.print("Select: ");
             int choice = scanner.nextInt();
-
             switch (choice) {
                 case 1:
                     restaurant.displayMenu();
@@ -57,7 +55,22 @@ public class MenuSystem {
         }
         scanner.close();
     }
-
+    private void loadMenu(Restaurant restaurant, String path) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+            String line;
+            reader.readLine();
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(",");
+                int id = Integer.parseInt(data[0]);
+                String name = data[1];
+                double price = Double.parseDouble(data[2]);
+                String category = data[3];
+                restaurant.addMenuItem(new MenuItem(id, name, price, category));
+            }
+        } catch (IOException e) {
+            System.out.println("File Error: " + e.getMessage());
+        }
+    }
     private void processOrder(Customer customer, Restaurant restaurant, Scanner scanner) {
         if (customer.getCart().isEmpty()) {
             System.out.println("Cart is empty.");
