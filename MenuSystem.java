@@ -9,8 +9,17 @@ public class MenuSystem {
         System.out.println("### FOOD ORDERING SYSTEM ###");
         System.out.print("Enter Name: ");
         String name = scanner.nextLine();
-        System.out.print("Enter Phone: ");
-        String phone = scanner.nextLine();
+        
+        String phone;
+        while (true) {
+            System.out.print("Enter Phone: ");
+            phone = scanner.nextLine();
+            if (phone.matches("\\d+")) {
+                break;
+            }
+            System.out.println("Invalid input! Please enter only numbers.");
+        }
+
         System.out.print("Enter Address: ");
         String address = scanner.nextLine();
         Customer customer = new Customer(name, phone, address);
@@ -55,6 +64,7 @@ public class MenuSystem {
         }
         scanner.close();
     }
+
     private void loadMenu(Restaurant restaurant, String path) {
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
             String line;
@@ -71,6 +81,7 @@ public class MenuSystem {
             System.out.println("File Error: " + e.getMessage());
         }
     }
+
     private void processOrder(Customer customer, Restaurant restaurant, Scanner scanner) {
         if (customer.getCart().isEmpty()) {
             System.out.println("Cart is empty.");
